@@ -1,0 +1,31 @@
+﻿<Window x:Class="Test_task.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test_task"
+        mc:Ignorable="d"
+        Title="Window1" Height="476.471" Width="874.685">
+
+    <Window.Resources>
+        <XmlDataProvider x:Key="XmlData" Source="SealReceipt.xml"/>
+    </Window.Resources>
+
+    <Grid>
+        <DataGrid x:Name="dgToDoList" FontSize="14" CanUserAddRows="False" FontWeight="Bold" FontStyle="Oblique" CanUserSortColumns ="True" 
+ AutoGenerateColumns="False" Margin="0,0,1.4,47.6" IsSynchronizedWithCurrentItem="True" 
+ ItemsSource="{Binding Source={StaticResource XmlData}, XPath=return/storage/product/*}" >
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Binding="{Binding XPath= @storage_name}" IsReadOnly="False" Header="Название склада" Width="Auto"/>
+                <DataGridTextColumn Binding="{Binding XPath= @product_name}" IsReadOnly="False" Header="Наименование товара" Width="Auto"/>
+                <DataGridTextColumn Binding="{Binding XPath= @count}" IsReadOnly="False" Header="Количество товара, шт" Width="Auto"/>
+                <DataGridTextColumn Binding="{Binding XPath= @m}" IsReadOnly="False" Header="Масса 1 шт, кг" Width="Auto"/>
+                <DataGridTextColumn Binding="{Binding XPath= @fragile}" IsReadOnly="False" Header="Хрупкое да/нет" Width="Auto"/>
+                <DataGridTextColumn Binding="{Binding XPath= @date}" IsReadOnly="False" Header="Дата отгрузки со склада" Width="Auto"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="button" Content="←" HorizontalAlignment="Left" Margin="737,405,0,0" VerticalAlignment="Top" Width="123" Height="36" Click="button_Click" FontSize="24" FontStyle="Italic"/>
+    </Grid>
+</Window>
